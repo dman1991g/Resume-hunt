@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Quest</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Resume Quest</h1>
+    <p>Find the missing parts of the resume and discover projects!</p>
+
+    <div id="game-container">
+        <!-- Resume Parts (Hidden Info) -->
+        <div class="searchable" id="resume-education">?</div>
+        <div class="searchable" id="resume-experience">?</div>
+        <div class="searchable" id="resume-skills">?</div>
+
+        <!-- Projects (Linked to GitHub) -->
+        <div class="project" id="project1" data-url="https://github.com/yourusername/project1">Project A</div>
+        <div class="project" id="project2" data-url="https://github.com/yourusername/project2">Project B</div>
+        <div class="project" id="project3" data-url="https://github.com/yourusername/project3">Project C</div>
+    </div>
+
+    <div id="info-box">Click around to find parts of the resume!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
