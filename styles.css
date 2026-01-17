@@ -1,29 +1,37 @@
-/* RESET */
+/* =====================
+   RESET
+===================== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* PAGE BACKGROUND (outside the game) */
+/* =====================
+   PAGE BACKGROUND
+===================== */
 body {
   font-family: 'Courier New', monospace;
   color: white;
+
   background-color: #1a1a1a;
   background-image:
     radial-gradient(circle at 20% 25%, #2f4f2f 0%, transparent 45%),
     radial-gradient(circle at 75% 30%, #3b3b3b 0%, transparent 50%),
     radial-gradient(circle at 50% 80%, #2b3a4a 0%, transparent 50%);
+
   overflow: hidden;
   touch-action: none;
 }
 
-/* RECRUITER BYPASS */
+/* =====================
+   RECRUITER BYPASS
+===================== */
 #bypass-bar {
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 20;
+  z-index: 30;
 }
 
 #skipGameBtn {
@@ -32,88 +40,164 @@ body {
   padding: 8px 12px;
   font-weight: bold;
   cursor: pointer;
+  border-radius: 4px;
 }
 
-/* GAME WRAPPER */
+/* =====================
+   GAME WRAPPER
+===================== */
 #game-wrapper {
   width: 100vw;
   height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* ROOM */
+/* =====================
+   ROOM
+===================== */
 #room {
-  width: 320px;
-  height: 240px;
-  background-color: #5c7a3f; /* floor */
-  border: 4px solid #3a3a3a;
+  width: 360px;
+  height: 280px;
+
   position: relative;
+  border: 6px solid #3a3a3a;
   image-rendering: pixelated;
+
+  /* Floor */
+  background-color: #7a8f5a;
+  background-image:
+    linear-gradient(
+      0deg,
+      rgba(0,0,0,0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.05) 1px,
+      transparent 1px
+    );
+  background-size: 16px 16px;
 }
 
-/* PLAYER */
-#player {
-  width: 24px;
-  height: 24px;
-  background: #ffd800;
+/* =====================
+   WALLS
+===================== */
+.wall {
   position: absolute;
-  top: 120px;
-  left: 160px;
+  background: #4b4b4b;
+  z-index: 2;
+}
+
+.top-wall,
+.bottom-wall {
+  height: 16px;
+  width: 100%;
+  left: 0;
+}
+
+.top-wall {
+  top: 0;
+}
+
+.bottom-wall {
+  bottom: 0;
+}
+
+.left-wall,
+.right-wall {
+  width: 16px;
+  height: 100%;
+  top: 0;
+}
+
+.left-wall {
+  left: 0;
+}
+
+.right-wall {
+  right: 0;
+}
+
+/* =====================
+   PLAYER
+===================== */
+#player {
+  width: 20px;
+  height: 20px;
+  background: #ffd800;
+
+  position: absolute;
+  top: 140px;
+  left: 180px;
   transform: translate(-50%, -50%);
   z-index: 5;
 }
 
-/* INTERACTIVE OBJECTS */
+/* =====================
+   INTERACTIVE OBJECTS
+===================== */
 .object {
   position: absolute;
-  background-color: #333;
+  z-index: 4;
   border: 2px solid #000;
 }
 
+/* Desk Computer */
 .computer {
   width: 32px;
   height: 24px;
+  background: #222;
   top: 40px;
-  left: 140px;
+  left: 164px;
 }
 
+/* Bookshelf */
 .bookshelf {
   width: 48px;
-  height: 24px;
-  top: 10px;
-  left: 20px;
+  height: 32px;
+  background: #6b4f2c;
+  top: 40px;
+  left: 40px;
 }
 
+/* Wall Poster */
 .poster {
   width: 24px;
   height: 32px;
-  top: 20px;
-  right: 20px;
+  background: #3a6ea5;
+  top: 32px;
+  right: 40px;
 }
 
-/* INTERACTION PROMPT */
+/* =====================
+   INTERACTION PROMPT
+===================== */
 #prompt {
   position: absolute;
-  bottom: -28px;
+  bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.75rem;
   background: rgba(0,0,0,0.8);
   padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .hidden {
   display: none;
 }
 
-/* MOBILE CONTROLS */
+/* =====================
+   MOBILE CONTROLS
+===================== */
 #mobile-controls {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  z-index: 15;
+  z-index: 20;
 }
 
 #mobile-controls button {
@@ -125,14 +209,16 @@ body {
   border-radius: 6px;
 }
 
-/* MODAL */
+/* =====================
+   MODAL
+===================== */
 #modal {
   position: fixed;
   inset: 10%;
   background: #111;
   border: 3px solid #0f0;
   padding: 20px;
-  z-index: 30;
+  z-index: 40;
   overflow-y: auto;
 }
 
