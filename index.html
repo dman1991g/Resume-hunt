@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Quest</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Daniel Graham | Interactive Resume</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <h1>Resume Quest</h1>
-    <p>Find the missing parts of the resume and discover projects!</p>
 
-    <div id="game-container">
-        <!-- Resume Parts (Hidden Info) -->
-        <div class="searchable" id="resume-education">?</div>
-        <div class="searchable" id="resume-experience">?</div>
-        <div class="searchable" id="resume-skills">?</div>
+  <!-- Recruiter Bypass -->
+  <header id="bypass-bar">
+    <button id="skipGameBtn">View Resume (Skip Game)</button>
+  </header>
 
-        <!-- Projects (Linked to GitHub) -->
-        <div class="project" id="project1" data-url="https://github.com/yourusername/project1">Project A</div>
-        <div class="project" id="project2" data-url="https://github.com/yourusername/project2">Project B</div>
-        <div class="project" id="project3" data-url="https://github.com/yourusername/project3">Project C</div>
+  <!-- Game Container -->
+  <main id="game-wrapper">
+
+    <!-- Room -->
+    <section id="room">
+      
+      <!-- Player -->
+      <div id="player" aria-label="Player character"></div>
+
+      <!-- Interactive Objects -->
+      <div class="object computer" data-action="projects" aria-label="View Projects"></div>
+      <div class="object bookshelf" data-action="resume" aria-label="View Resume"></div>
+      <div class="object poster" data-action="about" aria-label="About Me"></div>
+
+    </section>
+
+    <!-- Interaction Prompt -->
+    <div id="prompt" class="hidden">
+      Tap / Press Enter
     </div>
 
-    <div id="info-box">Click around to find parts of the resume!</div>
+  </main>
 
-    <script src="script.js"></script>
+  <!-- Mobile Controls -->
+  <nav id="mobile-controls">
+    <button data-dir="up">▲</button>
+    <div>
+      <button data-dir="left">◀</button>
+      <button data-dir="down">▼</button>
+      <button data-dir="right">▶</button>
+    </div>
+  </nav>
+
+  <!-- Modal -->
+  <div id="modal" class="hidden" role="dialog" aria-modal="true">
+    <div id="modal-content"></div>
+    <button id="closeModal">Close</button>
+  </div>
+
+  <script src="game.js"></script>
 </body>
 </html>
