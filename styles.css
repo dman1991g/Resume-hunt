@@ -1,53 +1,145 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* PAGE BACKGROUND (outside the game) */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
+  font-family: 'Courier New', monospace;
+  color: white;
+  background-color: #1a1a1a;
+  background-image:
+    radial-gradient(circle at 20% 25%, #2f4f2f 0%, transparent 45%),
+    radial-gradient(circle at 75% 30%, #3b3b3b 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, #2b3a4a 0%, transparent 50%);
+  overflow: hidden;
+  touch-action: none;
 }
 
-h1 {
-    color: #333;
+/* RECRUITER BYPASS */
+#bypass-bar {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 20;
 }
 
-#game-container {
-    width: 600px;
-    height: 400px;
-    background: url('background.jpg') no-repeat center center;
-    background-size: cover;
-    position: relative;
-    margin: 20px auto;
-    border: 2px solid #333;
-    border-radius: 10px;
+#skipGameBtn {
+  background: #0f0;
+  border: none;
+  padding: 8px 12px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.searchable, .project {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    line-height: 120px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+/* GAME WRAPPER */
+#game-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.searchable:hover, .project:hover {
-    background-color: rgba(0, 255, 0, 0.6);
+/* ROOM */
+#room {
+  width: 320px;
+  height: 240px;
+  background-color: #5c7a3f; /* floor */
+  border: 4px solid #3a3a3a;
+  position: relative;
+  image-rendering: pixelated;
 }
 
-/* Position elements */
-#resume-education { top: 50px; left: 100px; }
-#resume-experience { top: 200px; left: 300px; }
-#resume-skills { top: 300px; left: 50px; }
-#project1 { top: 50px; left: 400px; }
-#project2 { top: 250px; left: 200px; }
-#project3 { top: 300px; left: 500px; }
+/* PLAYER */
+#player {
+  width: 24px;
+  height: 24px;
+  background: #ffd800;
+  position: absolute;
+  top: 120px;
+  left: 160px;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
 
-#info-box {
-    width: 600px;
-    margin: auto;
-    padding: 15px;
-    background-color: #ddd;
-    border-radius: 5px;
+/* INTERACTIVE OBJECTS */
+.object {
+  position: absolute;
+  background-color: #333;
+  border: 2px solid #000;
+}
+
+.computer {
+  width: 32px;
+  height: 24px;
+  top: 40px;
+  left: 140px;
+}
+
+.bookshelf {
+  width: 48px;
+  height: 24px;
+  top: 10px;
+  left: 20px;
+}
+
+.poster {
+  width: 24px;
+  height: 32px;
+  top: 20px;
+  right: 20px;
+}
+
+/* INTERACTION PROMPT */
+#prompt {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  background: rgba(0,0,0,0.8);
+  padding: 4px 8px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* MOBILE CONTROLS */
+#mobile-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 15;
+}
+
+#mobile-controls button {
+  font-size: 1.25rem;
+  margin: 2px;
+  padding: 10px;
+  background: #0f0;
+  border: none;
+  border-radius: 6px;
+}
+
+/* MODAL */
+#modal {
+  position: fixed;
+  inset: 10%;
+  background: #111;
+  border: 3px solid #0f0;
+  padding: 20px;
+  z-index: 30;
+  overflow-y: auto;
+}
+
+#modal h2 {
+  margin-bottom: 10px;
+}
+
+#closeModal {
+  margin-top: 20px;
 }
