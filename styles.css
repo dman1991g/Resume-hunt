@@ -1,5 +1,5 @@
 /* =====================
-   RESET
+   RESET & GLOBAL
 ===================== */
 * {
   box-sizing: border-box;
@@ -7,133 +7,49 @@
   padding: 0;
 }
 
-/* =====================
-   PAGE BACKGROUND
-===================== */
-body {
-  font-family: 'Courier New', monospace;
-  color: white;
-
-  background-color: #1a1a1a;
-  background-image:
-    radial-gradient(circle at 20% 25%, #2f4f2f 0%, transparent 45%),
-    radial-gradient(circle at 75% 30%, #3b3b3b 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, #2b3a4a 0%, transparent 50%);
-
+html, body {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  touch-action: none;
+  touch-action: none; /* IMPORTANT: keep for mobile movement */
+  font-family: 'Courier New', monospace;
+  background: #000; /* fallback only */
 }
 
 /* =====================
-   RECRUITER BYPASS
+   GAME CONTAINER
 ===================== */
-#bypass-bar {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 30;
-}
-
-#skipGameBtn {
-  background: #0f0;
-  border: none;
-  padding: 8px 12px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-/* =====================
-   GAME WRAPPER
-===================== */
-#game-wrapper {
+#game {
+  position: relative;
   width: 100vw;
   height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* ROOM BACKGROUND */
+  background-image: url("room_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* =====================
-   ROOM
-===================== */
-#room {
-  width: 360px;
-  height: 280px;
-
-  position: relative;
-  border: 6px solid #3a3a3a;
-  image-rendering: pixelated;
-
-  /* Floor */
-  background-color: #7a8f5a;
-  background-image:
-    linear-gradient(
-      0deg,
-      rgba(0,0,0,0.05) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,0.05) 1px,
-      transparent 1px
-    );
-  background-size: 16px 16px;
-}
-
-/* =====================
-   WALLS
-===================== */
-.wall {
-  position: absolute;
-  background: #4b4b4b;
-  z-index: 2;
-}
-
-.top-wall,
-.bottom-wall {
-  height: 16px;
-  width: 100%;
-  left: 0;
-}
-
-.top-wall {
-  top: 0;
-}
-
-.bottom-wall {
-  bottom: 0;
-}
-
-.left-wall,
-.right-wall {
-  width: 16px;
-  height: 100%;
-  top: 0;
-}
-
-.left-wall {
-  left: 0;
-}
-
-.right-wall {
-  right: 0;
-}
-
-/* =====================
-   PLAYER
+   PLAYER (SPRITE READY)
 ===================== */
 #player {
-  width: 20px;
-  height: 20px;
-  background: #ffd800;
-
   position: absolute;
-  top: 140px;
-  left: 180px;
+  width: 40px;
+  height: 40px;
+
+  /* TEMP fallback color if sprite fails */
+  background-color: transparent;
+  background-image: url("player_sprites.png");
+  background-size: cover;
+
+  left: 50%;
+  top: 55%;
   transform: translate(-50%, -50%);
   z-index: 5;
+
+  transition: left 0.1s linear, top 0.1s linear;
 }
 
 /* =====================
@@ -141,53 +57,75 @@ body {
 ===================== */
 .object {
   position: absolute;
-  z-index: 4;
-  border: 2px solid #000;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 3;
 }
 
-/* Desk Computer */
-.computer {
-  width: 32px;
-  height: 24px;
-  background: #222;
-  top: 40px;
-  left: 164px;
+/* Desk / Computer (Projects) */
+#desk {
+  width: 96px;
+  height: 64px;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: url("desk_computer.png");
 }
 
-/* Bookshelf */
-.bookshelf {
-  width: 48px;
-  height: 32px;
-  background: #6b4f2c;
-  top: 40px;
-  left: 40px;
+/* Bookshelf (Resume) */
+#bookshelf {
+  width: 64px;
+  height: 96px;
+  top: 25%;
+  left: 8%;
+  background-image: url("bookshelf.png");
 }
 
-/* Wall Poster */
-.poster {
-  width: 24px;
-  height: 32px;
-  background: #3a6ea5;
-  top: 32px;
-  right: 40px;
+/* Bed (About Me) */
+#bed {
+  width: 96px;
+  height: 64px;
+  top: 55%;
+  right: 8%;
+  background-image: url("bed.png");
+}
+
+/* Rug (spawn / visual only) */
+#rug {
+  width: 120px;
+  height: 80px;
+  top: 60%;
+  left: 45%;
+  transform: translateX(-50%);
+  background-image: url("rug.png");
+  z-index: 1;
 }
 
 /* =====================
-   INTERACTION PROMPT
+   INTERACTION FEEDBACK
 ===================== */
-#prompt {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.75rem;
-  background: rgba(0,0,0,0.8);
-  padding: 4px 8px;
-  border-radius: 4px;
+.interactable {
+  outline: 2px dashed rgba(255, 255, 255, 0.2);
 }
 
-.hidden {
-  display: none;
+.interactable.active {
+  outline-color: #00ff88;
+  background-color: rgba(0, 255, 136, 0.12);
+}
+
+/* =====================
+   INFO TEXT
+===================== */
+#info {
+  position: absolute;
+  left: 12px;
+  bottom: 90px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  z-index: 10;
 }
 
 /* =====================
@@ -195,18 +133,42 @@ body {
 ===================== */
 #mobile-controls {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
+  bottom: 12px;
+  right: 12px;
   z-index: 20;
+
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  grid-template-rows: repeat(2, 60px);
+  gap: 8px;
 }
 
 #mobile-controls button {
-  font-size: 1.25rem;
-  margin: 2px;
-  padding: 10px;
-  background: #0f0;
+  background: #7CFF7C;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* Arrow layout */
+#mobile-controls button[data-dir="up"] {
+  grid-column: 2;
+}
+
+#mobile-controls button[data-dir="left"] {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#mobile-controls button[data-dir="down"] {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#mobile-controls button[data-dir="right"] {
+  grid-column: 3;
+  grid-row: 2;
 }
 
 /* =====================
@@ -216,16 +178,30 @@ body {
   position: fixed;
   inset: 10%;
   background: #111;
-  border: 3px solid #0f0;
+  border: 3px solid #00ff88;
   padding: 20px;
-  z-index: 40;
+  z-index: 50;
   overflow-y: auto;
 }
 
-#modal h2 {
-  margin-bottom: 10px;
+.hidden {
+  display: none;
 }
 
-#closeModal {
-  margin-top: 20px;
+/* =====================
+   DESKTOP ENHANCEMENT
+===================== */
+@media (min-width: 768px) {
+  #player {
+    width: 48px;
+    height: 48px;
+  }
+
+  #mobile-controls {
+    display: none;
+  }
+
+  #info {
+    bottom: 20px;
+  }
 }
